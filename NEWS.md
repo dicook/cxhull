@@ -1,3 +1,7 @@
+# cxhull 0.7.5
+
+- Using new version of qhull from http://www.qhull.org/
+
 # cxhull 0.7.4
 
 - The faces of the mesh returned by the `hullMesh` function are now given by 

@@ -1,7 +1,7 @@
 Type: Package
 Package: cxhull
 Title: Convex Hull
-Version: 0.7.4
+Version: 0.7.5
 Date: 2023-10-23
 Authors@R: c(
     person("C. B.", "Barber", role = "cph",
@@ -21,11 +21,11 @@ Depends:
     R (>= 2.10)
 Imports: 
     data.table,
-    grDevices,
+    grDevices
+Suggests: 
+    colorspace,
     rgl,
     Rvcg
-Suggests: 
-    colorspace
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3

@@ -210,7 +210,7 @@ VerticesXYZ <- function(hull){
 #' @export
 #'
 #' @examples library(cxhull)
-#' library(rgl)
+#' requireNamespace("rgl", quietly=TRUE)
 #' dodecahedron <- t(dodecahedron3d()$vb[-4L, ])
 #' hull <- cxhull(dodecahedron, triangulate = TRUE)
 #' triangles <- TrianglesXYZ(hull)
@@ -261,7 +261,7 @@ TrianglesXYZ <- function(hull){
 #' @export
 #'
 #' @examples library(cxhull)
-#' library(rgl)
+#' requireNamespace("rgl", quietly=TRUE)
 #' dodecahedron <- t(dodecahedron3d()$vb[-4L, ])
 #' hull <- cxhull(dodecahedron, triangulate = TRUE)
 #' triangles <- TrianglesXYZ(hull)

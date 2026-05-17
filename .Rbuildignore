@@ -16,3 +16,5 @@
 ^CRAN-SUBMISSION$
 ^inst/trash$
 ^data-raw$
+^\.positai$
+^\.claude$
