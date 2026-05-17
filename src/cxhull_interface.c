@@ -142,18 +142,6 @@ int qh_compare_facetarea(const void* p1, const void* p2) {
 } /* compare_facetarea */
 
 /*-<a                             href="qh-io_r.htm#TOC"
-  >-------------------------------</a><a name="compare_facetmerge">-</a>
-
-  qh_compare_facetmerge(p1, p2 )
-    used by qsort() to order facets by number of merges
-*/
-int qh_compare_facetmerge(const void* p1, const void* p2) {
-  const facetT *a = *((facetT*const*)p1), *b = *((facetT*const*)p2);
-
-  return (a->nummerge - b->nummerge);
-} /* compare_facetvisit */
-
-/*-<a                             href="qh-io_r.htm#TOC"
   >-------------------------------</a><a name="compare_facetvisit">-</a>
 
   qh_compare_facetvisit(p1, p2 )
