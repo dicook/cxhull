@@ -24,5 +24,5 @@ library(rgl)
 dodecahedron <- t(dodecahedron3d()$vb[-4L, ])
 hull <- cxhull(dodecahedron, triangulate = TRUE)
 triangles <- TrianglesXYZ(hull)
-triangles3d(triangles, color = "firebrick")
+#triangles3d(triangles, color = "firebrick")
 }

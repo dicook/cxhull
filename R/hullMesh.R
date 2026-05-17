@@ -45,12 +45,12 @@ orderFace <- function(face) {
 #' library(cxhull)
 #' hull <- cxhull(daVinciSphere)
 #' septuaginta <- hullMesh(hull, rgl = TRUE)
-#' library(rgl)
-#' open3d(windowRect = c(50, 50, 562, 562))
-#' shade3d(septuaginta, color = "darkred")
+#' #library(rgl)
+#' #open3d(windowRect = c(50, 50, 562, 562))
+#' #shade3d(septuaginta, color = "darkred")
 #' # some quad faces are misoriented:
-#' open3d(windowRect = c(50, 50, 562, 562))
-#' shade3d(septuaginta, color = "tomato", back = "culled")
+#' #open3d(windowRect = c(50, 50, 562, 562))
+#' #shade3d(septuaginta, color = "tomato", back = "culled")
 hullMesh <- function(hull, simplify = TRUE, rgl = FALSE) {
   stopifnot(isBoolean(simplify))
   stopifnot(isBoolean(rgl))

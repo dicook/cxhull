@@ -32,10 +32,10 @@ Unless all faces are triangular, the output does not define a mesh
 library(cxhull)
 hull <- cxhull(daVinciSphere)
 septuaginta <- hullMesh(hull, rgl = TRUE)
-library(rgl)
-open3d(windowRect = c(50, 50, 562, 562))
-shade3d(septuaginta, color = "darkred")
+#library(rgl)
+#open3d(windowRect = c(50, 50, 562, 562))
+#shade3d(septuaginta, color = "darkred")
 # some quad faces are misoriented:
-open3d(windowRect = c(50, 50, 562, 562))
-shade3d(septuaginta, color = "tomato", back = "culled")
+#open3d(windowRect = c(50, 50, 562, 562))
+#shade3d(septuaginta, color = "tomato", back = "culled")
 }

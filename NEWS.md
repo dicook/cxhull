@@ -1,6 +1,7 @@
-# cxhull 0.7.5
+# cxhull 0.8.0
 
 - Using new version of qhull from http://www.qhull.org/
+- New maintainer
 
 # cxhull 0.7.4
 

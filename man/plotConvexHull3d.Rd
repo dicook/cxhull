@@ -78,16 +78,16 @@ library(rgl)
 cuboctahedron <- t(cuboctahedron3d()$vb[-4L, ])
 hull <- cxhull(cuboctahedron, triangulate = TRUE)
 # single color ####
-open3d(windowRect = c(50, 50, 562, 562))
-plotConvexHull3d(hull)
+#open3d(windowRect = c(50, 50, 562, 562))
+#plotConvexHull3d(hull)
 # gradient ####
-open3d(windowRect = c(50, 50, 562, 562))
-if(getRversion() < "4.1.0"){
-  palette <- "Viridis"
-}else{
-  palette <- "Rocket"
-}
-plotConvexHull3d(hull, palette = hcl.colors(256, palette), bias = 0.5)
+#open3d(windowRect = c(50, 50, 562, 562))
+#if(getRversion() < "4.1.0"){
+#  palette <- "Viridis"
+#}else{
+#  palette <- "Rocket"
+#}
+#plotConvexHull3d(hull, palette = hcl.colors(256, palette), bias = 0.5)
 
 \donttest{
 library(cxhull)
@@ -95,13 +95,13 @@ library(rgl)
 # Leonardo da Vinci's 72-sided sphere ####
 hull <- cxhull(daVinciSphere, triangulate = TRUE)
 # there are some undesirable edges:
-plotConvexHull3d(
-  hull, tubesRadius = 0.07, spheresRadius = 0.1
-)
+#plotConvexHull3d(
+#  hull, tubesRadius = 0.07, spheresRadius = 0.1
+#)
 # => use `angleThreshold` to get rid of these edges:
-plotConvexHull3d(
-  hull, angleThreshold = 179,
-  tubesRadius = 0.07, spheresRadius = 0.1
-)
+#plotConvexHull3d(
+#  hull, angleThreshold = 179,
+#  tubesRadius = 0.07, spheresRadius = 0.1
+#)
 }
 }
