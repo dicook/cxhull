@@ -15,7 +15,8 @@ SOURCES_QHULL = \
   stat_r.c \
   usermem_r.c \
   userprintf_r.c \
-  userprintf_rbox_r.c
+  userprintf_rbox_r.c \
+  cxhull_interface.c
 
 SOURCES_R = cxhull_r.c
 
