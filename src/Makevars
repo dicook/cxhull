@@ -18,7 +18,4 @@ SOURCES_QHULL = \
   userprintf_rbox_r.c \
   cxhull_interface.c
 
-SOURCES_R = cxhull_r.c
-
-SOURCES = $(SOURCES_QHULL) $(SOURCES_R)
 OBJECTS = $(SOURCES:.c=.o)
