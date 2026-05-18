@@ -26,7 +26,6 @@ Dihedral angles of a convex hull.
 }
 \examples{
 # a cube ####
-library(cxhull)
 points <- rbind(
  c(0.5,0.5,0.5),
  c(0,0,0),

@@ -7,7 +7,6 @@
 #' @export
 #' @useDynLib cxhull, .registration = TRUE
 #' @examples
-#' library(cxhull)
 #' points <- rbind(
 #'  c(0.5,0.5,0.5),
 #'  c(0,0,0),
@@ -74,7 +73,7 @@ cxhull <- function(points, triangulate = FALSE){
 #'   vertices of the corresponding edge.
 #' @export
 #' @useDynLib cxhull, .registration = TRUE
-#' @examples library(cxhull)
+#' @examples 
 #' # let's try with the hexacosichoron (see `?hexacosichoron`)
 #' #   it is convex so its convex hull is itself
 #' VE <- cxhullEdges(hexacosichoron)
@@ -210,12 +209,31 @@ VerticesXYZ <- function(hull){
 #' @export
 #'
 #' @examples 
-#' library(cxhull)
-#' library(rgl)
-#' dodecahedron <- t(dodecahedron3d()$vb[-4L, ])
+#' # Vertices of a regular dodecahedron
+#' phi <- (1 + sqrt(5)) / 2  # golden ratio
+#' dodecahedron <- rbind(
+#'   # (+/-1, +/-1, +/-1)
+#'   c( 1,  1,  1), c( 1,  1, -1),
+#'   c( 1, -1,  1), c( 1, -1, -1),
+#'   c(-1,  1,  1), c(-1,  1, -1),
+#'   c(-1, -1,  1), c(-1, -1, -1),
+#'   # (0, +/-1/phi, +/-phi)
+#'   c( 0,  1/phi,  phi), c( 0,  1/phi, -phi),
+#'   c( 0, -1/phi,  phi), c( 0, -1/phi, -phi),
+#'   # (+/-1/phi, +/-phi, 0)
+#'   c( 1/phi,  phi,  0), c( 1/phi, -phi,  0),
+#'   c(-1/phi,  phi,  0), c(-1/phi, -phi,  0),
+#'   # (+/-phi, 0, +/-1/phi)
+#'   c( phi,  0,  1/phi), c( phi,  0, -1/phi),
+#'   c(-phi,  0,  1/phi), c(-phi,  0, -1/phi)
+#' )
 #' hull <- cxhull(dodecahedron, triangulate = TRUE)
 #' triangles <- TrianglesXYZ(hull)
-#' #triangles3d(triangles, color = "firebrick")
+#' head(triangles)
+#'
+#' # To visualise in 3D (requires rgl):
+#' # library(rgl)
+#' # triangles3d(triangles, color = "firebrick")
 TrianglesXYZ <- function(hull){
   Vertices <- VerticesXYZ(hull)
   if(!isTRUE(attr(hull, "triangulate"))){
@@ -261,23 +279,36 @@ TrianglesXYZ <- function(hull){
 #'   is a border edge.
 #' @export
 #'
-#' @examples 
-#' library(cxhull)
-#' library(rgl)
-#' dodecahedron <- t(dodecahedron3d()$vb[-4L, ])
-#' hull <- cxhull(dodecahedron, triangulate = TRUE)
-#' triangles <- TrianglesXYZ(hull)
-#' #triangles3d(triangles, color = "yellow")
+#' @examples
+#' # Convex hull of an icosahedron
+#' phi <- (1 + sqrt(5)) / 2  # golden ratio
+#' ico <- rbind(
+#'   c( 0,  1,  phi), c( 0, -1,  phi),
+#'   c( 0,  1, -phi), c( 0, -1, -phi),
+#'   c( 1,  phi,  0), c(-1,  phi,  0),
+#'   c( 1, -phi,  0), c(-1, -phi,  0),
+#'   c( phi,  0,  1), c(-phi,  0,  1),
+#'   c( phi,  0, -1), c(-phi,  0, -1)
+#' )
+#' hull <- cxhull(ico, triangulate = TRUE)
 #' edges <- EdgesAB(hull)
-#' trueEdges <- edges[edges[, 3L] == "yes", c(1L, 2L)]
-#' otherEdges <- edges[edges[, 3L] == "no", c(1L, 2L)]
-#' vertices <- VerticesXYZ(hull)
-#' #for(i in 1:nrow(trueEdges)){
-#' #  lines3d(vertices[trueEdges[i, ], ], color = "blue", lwd = 3)
-#' #}
-#' #for(i in 1:nrow(otherEdges)){
-#' #  lines3d(vertices[otherEdges[i, ], ], color = "red", lwd = 3)
-#' #}
+#' head(edges)
+#'
+#' # True hull edges vs triangulation-only edges
+#' true_edges  <- edges[edges[, 3L] == "yes", ]
+#' other_edges <- edges[edges[, 3L] == "no",  ]
+#' cat("True edges:         ", nrow(true_edges),  "\n")
+#' cat("Triangulation edges:", nrow(other_edges), "\n")
+#'
+#' # To visualise in 3D (requires rgl):
+#' # library(rgl)
+#' # vertices <- VerticesXYZ(hull)
+#' # triangles3d(TrianglesXYZ(hull), color = "yellow", alpha = 0.5)
+#' # for(i in seq_len(nrow(true_edges)))
+#' #   lines3d(vertices[true_edges[i, 1:2], ], color = "blue", lwd = 3)
+#' # for(i in seq_len(nrow(other_edges)))
+#' #   lines3d(vertices[other_edges[i, 1:2], ], color = "red", lwd = 3)
+#'
 EdgesAB <- function(hull){
   if(!isTRUE(attr(hull, "3d"))){
     stop("This function is restriced to the 3D case.")
@@ -368,7 +399,7 @@ polygonize <- function(edges){
 #' @return A list with the vertices and the facets.
 #' @export
 #'
-#' @examples library(cxhull)
+#' @examples 
 #' # pyramid
 #' pts <- rbind(
 #'   c(0, 0, 0), 

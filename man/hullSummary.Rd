@@ -17,7 +17,6 @@ A list with the vertices and the facets.
 Summary of a triangulated 3D convex hull
 }
 \examples{
-library(cxhull)
 # pyramid
 pts <- rbind(
   c(0, 0, 0), 

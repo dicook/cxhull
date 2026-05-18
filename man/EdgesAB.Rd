@@ -20,20 +20,33 @@ Edges of a triangulated 3D convex hull given by the ids of
   the vertices in a matrix, plus a column indicating the border edges.
 }
 \examples{
-library(cxhull)
-library(rgl)
-dodecahedron <- t(dodecahedron3d()$vb[-4L, ])
-hull <- cxhull(dodecahedron, triangulate = TRUE)
-triangles <- TrianglesXYZ(hull)
-#triangles3d(triangles, color = "yellow")
+# Convex hull of an icosahedron
+phi <- (1 + sqrt(5)) / 2  # golden ratio
+ico <- rbind(
+  c( 0,  1,  phi), c( 0, -1,  phi),
+  c( 0,  1, -phi), c( 0, -1, -phi),
+  c( 1,  phi,  0), c(-1,  phi,  0),
+  c( 1, -phi,  0), c(-1, -phi,  0),
+  c( phi,  0,  1), c(-phi,  0,  1),
+  c( phi,  0, -1), c(-phi,  0, -1)
+)
+hull <- cxhull(ico, triangulate = TRUE)
 edges <- EdgesAB(hull)
-trueEdges <- edges[edges[, 3L] == "yes", c(1L, 2L)]
-otherEdges <- edges[edges[, 3L] == "no", c(1L, 2L)]
-vertices <- VerticesXYZ(hull)
-#for(i in 1:nrow(trueEdges)){
-#  lines3d(vertices[trueEdges[i, ], ], color = "blue", lwd = 3)
-#}
-#for(i in 1:nrow(otherEdges)){
-#  lines3d(vertices[otherEdges[i, ], ], color = "red", lwd = 3)
-#}
+head(edges)
+
+# True hull edges vs triangulation-only edges
+true_edges  <- edges[edges[, 3L] == "yes", ]
+other_edges <- edges[edges[, 3L] == "no",  ]
+cat("True edges:         ", nrow(true_edges),  "\n")
+cat("Triangulation edges:", nrow(other_edges), "\n")
+
+# To visualise in 3D (requires rgl):
+# library(rgl)
+# vertices <- VerticesXYZ(hull)
+# triangles3d(TrianglesXYZ(hull), color = "yellow", alpha = 0.5)
+# for(i in seq_len(nrow(true_edges)))
+#   lines3d(vertices[true_edges[i, 1:2], ], color = "blue", lwd = 3)
+# for(i in seq_len(nrow(other_edges)))
+#   lines3d(vertices[other_edges[i, 1:2], ], color = "red", lwd = 3)
+
 }

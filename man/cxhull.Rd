@@ -19,7 +19,6 @@ A list providing a lot of information about the convex hull. See
 Computes the convex hull of a set of points.
 }
 \examples{
-library(cxhull)
 points <- rbind(
  c(0.5,0.5,0.5),
  c(0,0,0),

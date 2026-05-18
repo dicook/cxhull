@@ -42,15 +42,22 @@ orderFace <- function(face) {
 #'   with coherently oriented faces. 
 #'
 #' @examples
-#' library(cxhull)
 #' hull <- cxhull(daVinciSphere)
-#' septuaginta <- hullMesh(hull, rgl = TRUE)
-#' #library(rgl)
-#' #open3d(windowRect = c(50, 50, 562, 562))
-#' #shade3d(septuaginta, color = "darkred")
-#' # some quad faces are misoriented:
-#' #open3d(windowRect = c(50, 50, 562, 562))
-#' #shade3d(septuaginta, color = "tomato", back = "culled")
+#'
+#' # With rgl = FALSE (default) the result is a plain list
+#' mesh <- hullMesh(hull, rgl = FALSE)
+#' cat("Vertices: ", nrow(mesh$vertices), "\n")
+#' cat("Faces:    ", length(mesh$faces),  "\n")
+#'
+#' # To visualise in 3D (requires rgl):
+#' # library(rgl)
+#' # septuaginta <- hullMesh(hull, rgl = TRUE)
+#' # open3d(windowRect = c(50, 50, 562, 562))
+#' # shade3d(septuaginta, color = "darkred")
+#' #
+#' # Some quad faces are misoriented; culling the back face reveals this:
+#' # open3d(windowRect = c(50, 50, 562, 562))
+#' # shade3d(septuaginta, color = "tomato", back = "culled")
 hullMesh <- function(hull, simplify = TRUE, rgl = FALSE) {
   stopifnot(isBoolean(simplify))
   stopifnot(isBoolean(rgl))

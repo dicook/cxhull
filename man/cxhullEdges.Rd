@@ -27,7 +27,6 @@ Computes the vertices and the edges of the convex hull of a set
   of points.
 }
 \examples{
-library(cxhull)
 # let's try with the hexacosichoron (see `?hexacosichoron`)
 #   it is convex so its convex hull is itself
 VE <- cxhullEdges(hexacosichoron)

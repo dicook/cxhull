@@ -37,7 +37,6 @@ set: first in 2D for orientation, then in the full 4D measurement space.
 library(cxhull)
 library(tourr)
 #library(mulgar)        # gen_chull() helper and penguins_sub data
-library(cardinalR)
 library(ggplot2)
 library(dplyr)
 library(colorspace)    # divergingx palette

@@ -49,37 +49,32 @@ refineMesh <- function(mesh){
 #' @importFrom grDevices colorRamp rgb
 #'
 #' @examples 
-#' library(cxhull)
-#' library(rgl)
-#' cuboctahedron <- t(cuboctahedron3d()$vb[-4L, ])
-#' hull <- cxhull(cuboctahedron, triangulate = TRUE)
-#' # single color ####
-#' #open3d(windowRect = c(50, 50, 562, 562))
-#' #plotConvexHull3d(hull)
-#' # gradient ####
-#' #open3d(windowRect = c(50, 50, 562, 562))
-#' #if(getRversion() < "4.1.0"){
-#' #  palette <- "Viridis"
-#' #}else{
-#' #  palette <- "Rocket"
-#' #}
-#' #plotConvexHull3d(hull, palette = hcl.colors(256, palette), bias = 0.5)
-#' 
-#' \donttest{
-#' library(cxhull)
-#' library(rgl)
-#' # Leonardo da Vinci's 72-sided sphere ####
-#' hull <- cxhull(daVinciSphere, triangulate = TRUE)
-#' # there are some undesirable edges:
-#' #plotConvexHull3d(
-#' #  hull, tubesRadius = 0.07, spheresRadius = 0.1
-#' #)
-#' # => use `angleThreshold` to get rid of these edges:
-#' #plotConvexHull3d(
-#' #  hull, angleThreshold = 179,
-#' #  tubesRadius = 0.07, spheresRadius = 0.1
-#' #)
-#' }
+#' # Convex hull of an icosahedron
+#' phi <- (1 + sqrt(5)) / 2  # golden ratio
+#' ico <- rbind(
+#'   c( 0,  1,  phi), c( 0, -1,  phi),
+#'   c( 0,  1, -phi), c( 0, -1, -phi),
+#'   c( 1,  phi,  0), c(-1,  phi,  0),
+#'   c( 1, -phi,  0), c(-1, -phi,  0),
+#'   c( phi,  0,  1), c(-phi,  0,  1),
+#'   c( phi,  0, -1), c(-phi,  0, -1)
+#' )
+#' hull <- cxhull(ico, triangulate = TRUE)
+#' cat("Vertices:", length(hull$vertices), "\n")
+#' cat("Faces:   ", length(hull$facets),   "\n")
+#'
+#' # To visualise in 3D (requires rgl):
+#' # library(rgl)
+#' # open3d(windowRect = c(50, 50, 562, 562))
+#' # plotConvexHull3d(hull)
+#' #
+#' # With a colour gradient:
+#' # plotConvexHull3d(hull, palette = hcl.colors(256, "Viridis"), bias = 0.5)
+#' #
+#' # The angleThreshold argument removes near-flat triangulation edges:
+#' # hull2 <- cxhull(daVinciSphere, triangulate = TRUE)
+#' # plotConvexHull3d(hull2, angleThreshold = 179,
+#' #                  tubesRadius = 0.07, spheresRadius = 0.1)
 plotConvexHull3d <- function(
     hull, angleThreshold = NULL,
     edgesAsTubes = TRUE, verticesAsSpheres = TRUE, 

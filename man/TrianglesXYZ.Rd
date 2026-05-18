@@ -19,10 +19,29 @@ Coordinates of the vertices of the triangles of a
  triangulated 3D convex hull.
 }
 \examples{
-library(cxhull)
-library(rgl)
-dodecahedron <- t(dodecahedron3d()$vb[-4L, ])
+# Vertices of a regular dodecahedron
+phi <- (1 + sqrt(5)) / 2  # golden ratio
+dodecahedron <- rbind(
+  # (+/-1, +/-1, +/-1)
+  c( 1,  1,  1), c( 1,  1, -1),
+  c( 1, -1,  1), c( 1, -1, -1),
+  c(-1,  1,  1), c(-1,  1, -1),
+  c(-1, -1,  1), c(-1, -1, -1),
+  # (0, +/-1/phi, +/-phi)
+  c( 0,  1/phi,  phi), c( 0,  1/phi, -phi),
+  c( 0, -1/phi,  phi), c( 0, -1/phi, -phi),
+  # (+/-1/phi, +/-phi, 0)
+  c( 1/phi,  phi,  0), c( 1/phi, -phi,  0),
+  c(-1/phi,  phi,  0), c(-1/phi, -phi,  0),
+  # (+/-phi, 0, +/-1/phi)
+  c( phi,  0,  1/phi), c( phi,  0, -1/phi),
+  c(-phi,  0,  1/phi), c(-phi,  0, -1/phi)
+)
 hull <- cxhull(dodecahedron, triangulate = TRUE)
 triangles <- TrianglesXYZ(hull)
-#triangles3d(triangles, color = "firebrick")
+head(triangles)
+
+# To visualise in 3D (requires rgl):
+# library(rgl)
+# triangles3d(triangles, color = "firebrick")
 }

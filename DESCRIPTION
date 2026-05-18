@@ -26,7 +26,10 @@ Imports:
     rgl,
     Rvcg
 Suggests: 
-    colorspace
+    colorspace,
+    tourr,
+    ggplot2,
+    dplyr
 Encoding: UTF-8
 LazyData: true
 Config/roxygen2/version: 8.0.0
