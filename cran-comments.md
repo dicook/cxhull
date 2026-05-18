@@ -29,8 +29,17 @@ rhub::rhub_check()
 
 ✔ Check started: linux, m1-san, windows (selfish-norwaylobster).
   See <https://github.com/dicook/cxhull/actions> for output.
+  
+And also additional linux checks (sheepskin-dairycow).
 
 All green.  
+
+## devtools::check()
+
+── R CMD check results ──────────────────────────────────────────────── cxhull 0.8.1 ────
+Duration: 17.5s
+
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ## R CMD check results
 
