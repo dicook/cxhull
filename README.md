@@ -1,6 +1,7 @@
 cxhull
 ================
-2022-10-25
+Stéphane Laurent
+2026-05-18
 
 <!-- badges: start -->
 
@@ -13,24 +14,23 @@ set of points in arbitrary dimension. Its main function is named
 
 The output of the `cxhull` function is a list with the following fields.
 
--   `vertices`: The vertices of the convex hull. Each vertex is given
-    with its neighbour vertices, its neighbour ridges and its neighbour
-    facets.
+- `vertices`: The vertices of the convex hull. Each vertex is given with
+  its neighbour vertices, its neighbour ridges and its neighbour facets.
 
--   `edges`: The edges of the convex hull, given as pairs of vertices
-    identifiers.
+- `edges`: The edges of the convex hull, given as pairs of vertices
+  identifiers.
 
--   `ridges`: The ridges of the convex hull, i.e. the elements of the
-    convex hull of dimension `dim-2`. Thus the ridges are just the
-    vertices in dimension 2, and they are the edges in dimension 3.
+- `ridges`: The ridges of the convex hull, i.e. the elements of the
+  convex hull of dimension `dim-2`. Thus the ridges are just the
+  vertices in dimension 2, and they are the edges in dimension 3.
 
--   `facets`: The facets of the convex hull, i.e. the elements of the
-    convex hull of dimension `dim-1`. Thus the facets are the edges in
-    dimension 2, and they are the faces of the convex polyhedron in
-    dimension 3.
+- `facets`: The facets of the convex hull, i.e. the elements of the
+  convex hull of dimension `dim-1`. Thus the facets are the edges in
+  dimension 2, and they are the faces of the convex polyhedron in
+  dimension 3.
 
--   `volume`: The volume of the convex hull (area in dimension 2, volume
-    in dimension 3, hypervolume in higher dimension).
+- `volume`: The volume of the convex hull (area in dimension 2, volume
+  in dimension 3, hypervolume in higher dimension).
 
 Let’s look at an example. The points we take are the vertices of a cube
 and the center of this cube (in the first row):
