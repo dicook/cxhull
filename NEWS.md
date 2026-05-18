@@ -2,6 +2,7 @@
 
 - Using new version of qhull from http://www.qhull.org/
 - New maintainer
+- Updated documentation and examples
 
 # cxhull 0.7.4
 

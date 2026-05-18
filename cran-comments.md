@@ -10,7 +10,7 @@ responsible for it's removal.
 rhub::rhub_check() 
 
 ✔ Check started: linux, m1-san, windows (selfish-norwaylobster).
-  See <https://github.com/dicook/cxhull/actions> for live output!
+  See <https://github.com/dicook/cxhull/actions> for output.
 
 All green.  
 
