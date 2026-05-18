@@ -18,6 +18,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "Rheaders.h"
+
 #ifdef _MSC_VER  /* Microsoft Visual C++ -- warning level 4 */
 #pragma warning( disable : 4706)  /* assignment within conditional function */
 #endif
@@ -68,13 +70,13 @@ int main(int argc, char **argv) {
   QHULL_LIB_CHECK_RBOX
 
   if (argc == 1) {
-    printf(prompt, qh_DEFAULTbox, qh_DEFAULTzbox);
+    Rprintf(prompt, qh_DEFAULTbox, qh_DEFAULTzbox);
     return qh_ERRnone;
   }
   if (argc == 2 && strcmp(argv[1], "D4")==0)
-    qh_fprintf_stderr(0, "\nStarting the rbox smoketest for qhull.  An immediate failure indicates\nthat reentrant rbox was linked to non-reentrant routines.  An immediate\nfailure of qhull may indicate that qhull was linked to the wrong\nqhull library.  Also try 'rbox D4 | qhull T1'\n");
+    REprintf("\nStarting the rbox smoketest...\n");
 
-  qh_init_A(qh, stdin, stdout, stderr, argc, argv);  /*no qh_errexit, sets qh->qhull_command */
+  qh_init_A(qh, NULL, NULL, NULL, argc, argv);  /*no qh_errexit, sets qh->qhull_command */
   return_status= qh_rboxpoints(qh, qh->qhull_command); /* Traps its own errors, qh_errexit_rbox() */
   return return_status;
 }/*main*/

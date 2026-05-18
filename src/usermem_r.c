@@ -23,6 +23,8 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+#include "Rheaders.h"
+
 /*-<a                             href="qh-user_r.htm#TOC"
   >-------------------------------</a><a name="qh_exit">-</a>
 
@@ -38,7 +40,7 @@
     To replace qh_exit with 'throw', see libqhullcpp/usermem_r-cpp.cpp
 */
 void qh_exit(int exitcode) {
-    exit(exitcode);
+  error("qhull: fatal error, exit code %d", exitcode);
 } /* exit */
 
 /*-<a                             href="qh-user_r.htm#TOC"
@@ -59,13 +61,12 @@ void qh_exit(int exitcode) {
 */
 void qh_fprintf_stderr(int msgcode, const char *fmt, ... ) {
     va_list args;
-
     va_start(args, fmt);
     if(msgcode)
-      fprintf(stderr, "QH%.4d ", msgcode);
-    vfprintf(stderr, fmt, args);
+        REprintf("QH%.4d ", msgcode);
+    REvprintf(fmt, args);
     va_end(args);
-} /* fprintf_stderr */
+}
 
 /*-<a                             href="qh-user_r.htm#TOC"
 >-------------------------------</a><a name="qh_free">-</a>
