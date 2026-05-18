@@ -36,7 +36,6 @@ orderFace <- function(face) {
 #' @export
 #' 
 #' @importFrom data.table uniqueN
-#' @importFrom rgl mesh3d
 #' 
 #' @note Unless all faces are triangular, the output does not define a mesh 
 #'   with coherently oriented faces. 
@@ -69,6 +68,12 @@ hullMesh <- function(hull, simplify = TRUE, rgl = FALSE) {
   faces <- lapply(faces, function(x) dict[as.character(x)])
   #
   if(rgl) {
+    if (!requireNamespace("rgl", quietly = TRUE)) {
+      stop("Package 'rgl' is required. Install with install.packages('rgl').")
+    }
+    if (!requireNamespace("Rvcg", quietly = TRUE)) {
+      stop("Package 'Rvcg' is required. Install with install.packages('Rvcg').")
+    }
     nedges <- lengths(faces)
     if(all(nedges %in% c(3L, 4L))) {
       sfaces <- split(faces, nedges)
@@ -80,7 +85,7 @@ hullMesh <- function(hull, simplify = TRUE, rgl = FALSE) {
       if(!is.null(quads)) {
         quads <- do.call(cbind, quads)
       }
-      rmesh <- mesh3d(vertices, triangles = trgls, quads = quads)
+      rmesh <- rgl::mesh3d(vertices, triangles = trgls, quads = quads)
       return(rmesh)
     } else {
       warning(

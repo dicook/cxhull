@@ -1,8 +1,7 @@
-#' @importFrom Rvcg vcgIsotropicRemeshing
 #' @noRd
 refineMesh <- function(mesh){
-  vcgIsotropicRemeshing(
-    vcgIsotropicRemeshing(mesh, TargetLen = 0), 
+  Rvcg::vcgIsotropicRemeshing(
+    Rvcg::vcgIsotropicRemeshing(mesh, TargetLen = 0), 
     TargetLen = 0
   )
 }
@@ -45,7 +44,6 @@ refineMesh <- function(mesh){
 #' @return No value.
 #' @export
 #'
-#' @importFrom rgl triangles3d cylinder3d shade3d lines3d spheres3d as.mesh3d
 #' @importFrom grDevices colorRamp rgb
 #'
 #' @examples 
@@ -83,6 +81,12 @@ plotConvexHull3d <- function(
     tubesRadius = 0.03, spheresRadius = 0.05, spheresColor = edgesColor,
     alpha = 1
 ){
+  if (!requireNamespace("rgl", quietly = TRUE)) {
+    stop("Package 'rgl' is required. Install with install.packages('rgl').")
+  }
+  if (!requireNamespace("Rvcg", quietly = TRUE)) {
+    stop("Package 'Rvcg' is required. Install with install.packages('Rvcg').")
+  }
   if(is.null(angleThreshold)){
     edges <- EdgesAB(hull)
     trueEdges <- edges[edges[, 3L] == "yes", c(1L, 2L)]
@@ -94,14 +98,14 @@ plotConvexHull3d <- function(
   if(is.null(palette)){
     ncolors <- length(facesColor) 
     if(ncolors == 1L){
-      triangles3d(TrianglesXYZ(hull), color = facesColor, alpha = alpha)
+      rgl::triangles3d(TrianglesXYZ(hull), color = facesColor, alpha = alpha)
     }else{
       nTriangles <- length(hull[["facets"]])
       trianglesxyz <- TrianglesXYZ(hull)
       triangles <- split(trianglesxyz, gl(nTriangles, 3L))
       if(ncolors == nTriangles){
         for(i in 1L:nTriangles){
-          triangles3d(
+          rgl::triangles3d(
             matrix(triangles[[i]], nrow = 3L, ncol = 3L), 
             color = facesColor[i], alpha = alpha
           )
@@ -115,7 +119,7 @@ plotConvexHull3d <- function(
           names(facesColor) <- ufamilies
           for(i in 1L:nTriangles){
             family <- families[i]
-            triangles3d(
+            rgl::triangles3d(
               matrix(triangles[[i]], nrow = 3L, ncol = 3L), 
               color = facesColor[family], alpha = alpha
             )
@@ -137,7 +141,7 @@ plotConvexHull3d <- function(
     names(mergedFaces) <- ufamilies
     for(i in 1L:nTriangles){
       family <- families[i]
-      mesh <- as.mesh3d(matrix(triangles[[i]], nrow = 3L, ncol = 3L))
+      mesh <- rgl::as.mesh3d(matrix(triangles[[i]], nrow = 3L, ncol = 3L))
       mergedFaces[[family]] <- c(mergedFaces[[family]], list(mesh))
     }
     for(family in ufamilies){
@@ -156,23 +160,23 @@ plotConvexHull3d <- function(
       RGB <- fpalette(g(dists))
       colors <- rgb(RGB[, 1L], RGB[, 2L], RGB[, 3L], maxColorValue = 255)
       mesh[["material"]][["color"]] <- colors
-      shade3d(mesh, alpha = alpha)
+      rgl::shade3d(mesh, alpha = alpha)
     }
   }
   Vertices <- VerticesXYZ(hull)
   for(i in 1L:nrow(trueEdges)){
     edge <- trueEdges[i, ]
     if(edgesAsTubes){
-      tube <- cylinder3d(
+      tube <- rgl::cylinder3d(
         Vertices[edge, ], radius = tubesRadius, sides = 90
       )
-      shade3d(tube, color = edgesColor)
+      rgl::shade3d(tube, color = edgesColor)
     }else{
-      lines3d(Vertices[edge, ], color = edgesColor, lwd = 2)
+      rgl::lines3d(Vertices[edge, ], color = edgesColor, lwd = 2)
     }
   }
   if(verticesAsSpheres){
-    spheres3d(Vertices, radius = spheresRadius, color = spheresColor)
+    rgl::spheres3d(Vertices, radius = spheresRadius, color = spheresColor)
   }
   invisible(NULL)
 }

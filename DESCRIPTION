@@ -22,11 +22,11 @@ Depends:
     R (>= 4.5.0)
 Imports: 
     data.table,
-    grDevices,
-    rgl,
-    Rvcg
+    grDevices
 Suggests: 
     colorspace,
+    rgl,
+    Rvcg,
     tourr,
     ggplot2,
     dplyr
