@@ -1,12 +1,12 @@
 ---
 title: "cxhull"
-author: "Stéphane Laurent"
+author: "Stéphane Laurent, with some contributions by Dianne Cook"
 date: "2026-05-18"
 output:
   github_document:
   html_document:
     toc: yes
-    keep_md: no
+    keep_md: noco
 editor_options:
   chunk_output_type: console
 ---

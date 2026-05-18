@@ -1,6 +1,6 @@
 cxhull
 ================
-Stéphane Laurent
+Stéphane Laurent, with some contributions by Dianne Cook
 2026-05-18
 
 <!-- badges: start -->

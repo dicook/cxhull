@@ -2,3 +2,6 @@ url: https://github.com/dicook/cxhull
 template:
   bootstrap: 5
 
+navbar:
+  structure:
+    left: [reference, articles]
