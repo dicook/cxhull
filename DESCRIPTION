@@ -32,4 +32,5 @@ Suggests:
     dplyr
 Encoding: UTF-8
 LazyData: true
+Config/Needs/check: spelling
 Config/roxygen2/version: 8.0.0
