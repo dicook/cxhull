@@ -1,3 +1,7 @@
+# cxhull 0.8.1
+
+- Debian linux is complaining about variable arrays and out of bounds. But it is a known issue in the Qhull project, and legitimate coding. This change is a suppression of the warning.
+
 # cxhull 0.8.0
 
 - Using new version of qhull from http://www.qhull.org/

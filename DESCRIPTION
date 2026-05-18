@@ -1,7 +1,7 @@
 Type: Package
 Package: cxhull
 Title: Convex Hull
-Version: 0.8.0
+Version: 0.8.1
 Date: 2026-05-17
 Authors@R: c(
     person("C. B.", "Barber", role = "cph",
