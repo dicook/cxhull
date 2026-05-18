@@ -1,4 +1,4 @@
-cxhull
+cxhull: Computes the convex hull in arbitrary dimension.
 ================
 Stéphane Laurent, with some contributions by Dianne Cook
 2026-05-18
